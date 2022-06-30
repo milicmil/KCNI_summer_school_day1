@@ -1,4 +1,4 @@
-# KCNI_summer_school_day1
+# KCNI summer school: Tractor-Tutorial 2022 Sci-Net
 Repo hosting the modified tractor tutorial for sci-net Niagara cluster.
 
 

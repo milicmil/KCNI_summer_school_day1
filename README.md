@@ -17,4 +17,4 @@ Tractor: https://github.com/Atkinson-Lab/Tractor
 
 The dataset used is found here: https://github.com/Atkinson-Lab/Tractor-tutorial/blob/main/tutorial-data.zip
 
-
+**Tractor_tut_full.md** has the instructions. 

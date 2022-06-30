@@ -2,12 +2,12 @@
 Repo hosting the modified tractor tutorial for sci-net Niagara cluster.
 
 
-The markdown file is a modified version of the atkinson lab tractor tutorial https://github.com/Atkinson-Lab/Tractor-tutorial/blob/main/README.md that works on Sc-net Niagara cluster (https://docs.alliancecan.ca/wiki/Niagara_Quickstart).
+The markdown file is a modified version of the atkinson lab tractor tutorial https://github.com/Atkinson-Lab/Tractor-tutorial/blob/main/README.md that works on Sci-net Niagara cluster (https://docs.alliancecan.ca/wiki/Niagara_Quickstart).
 
 It uses the following modules:
 
 shapeit: https://mathgen.stats.ox.ac.uk/genetics_software/shapeit/shapeit.html#download
-rfmix
+
 
 rfmix: source code: https://github.com/slowkoni/rfmix.git
 - Anaconda package: https://anaconda.org/bioconda/rfmix

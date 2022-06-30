@@ -101,7 +101,7 @@ The command below will install **statsmodels** pythjon package (user tag is appl
 ```
 pip install statsmodels
 ```
-#### Loading Shapeit Rfmix and copyting Tractor script folder
+#### Loading Shapeit Rfmix and copying Tractor script folder
 
 We have made a custom environment where Shapeit and Rfmix  are installed.
 For it to work we need to change the pointer for the two modules.
@@ -214,6 +214,34 @@ cp /gpfs/fs1/home/d/dfelsky/milicmil/phase/ASW.phased.sample /gpfs/fs0/scratch/*
 ```
 &nbsp;  
 &nbsp;       
+
+One can create also create a batch job out of this command. In order to do that, you will need to make an empty bash file which will store your command. To make the file, type the following code below:
+
+```
+nano phase_job.sh
+```
+Now that you are in nano text editor select the information in the code block below and paste it using *ctrl + insert*. you can use the arrow keys to navigate to the different lines. When the **USERNAME** has been modified, press **ctrl + x** in order to exit. You will get a prompt to confirm the save. Press **Enter** to confirm the save.
+
+```
+#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=40
+#SBATCH --time=1:00:00
+#SBATCH --job-name=phsing_tractor_USERNAME
+#SBATCH --output=omp_output_%j.txt
+#SBATCH --mail-type=FAIL
+
+module use /gpfs/fs1/home/d/dfelsky/dfelsky/modules/
+
+module load shapeit
+
+shapeit  --input-vcf ADMIX_COHORT/ASW.unphased.vcf.gz \
+      --input-map HAP_REF/chr22.genetic.map.txt \
+      --input-ref HAP_REF/chr22.hap.gz HAP_REF/chr22.legend.gz HAP_REF/ALL.sample \
+      -O ADMIX_COHORT/ASW.phased
+```
+To start your batch job type in `sbatch phase_job.sh`.
+To monitor the status of your job type in ```squeue -u USERNAME``` to see the status of your batch job.
 
 
 #### Converting  shapeit output to vcf format.

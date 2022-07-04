@@ -217,6 +217,8 @@ shapeit  --input-vcf ADMIX_COHORT/ASW.unphased.vcf.gz \
 
       # add this if shapeit throw error message:   --exclude-snp alignments.snp.strand.exclude
 ```    
+**NOTE: Chances are, there wont be enough computational time in debug node (60 min) to complete this step**. In that case you should either copy results or run the batch script below. 
+
 &nbsp;  
 &nbsp;  
 
@@ -241,9 +243,9 @@ In the code below, you will need to specify the location of your output (all the
 
 ```
 #!/bin/bash
-#SBATCH --nodes=1
+#SBATCH --nodes=2
 #SBATCH --cpus-per-task=40
-#SBATCH --time=1:00:00
+#SBATCH --time=1:30:00
 #SBATCH --job-name=phsing_tractor_USERNAME
 #SBATCH --output=/DIRECTORY PATH TO OUTPUT/omp_output_%j.txt
 #SBATCH --mail-type=FAIL
@@ -265,7 +267,7 @@ shapeit  --input-vcf ADMIX_COHORT/ASW.unphased.vcf.gz \
 To start your batch job type in `sbatch phase_job.sh`.
 To monitor the status of your job type in ```squeue -u USERNAME``` to see the status of your batch job.
 
-Depending on the number of requests, there may be a few hour wait before your job is run. 
+Depending on the number of requests, there may be a few hour wait before your job is run.
 
 #### Converting  shapeit output to vcf format.
 

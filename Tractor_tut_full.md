@@ -223,9 +223,9 @@ shapeit  --input-vcf ADMIX_COHORT/ASW.unphased.vcf.gz \
 In case we are pressed for time, one can copy the output from the location below. The `ASW.phased` file needs to be copied to **ADMIX_COHORT/** folder.
 
 ```
-cp /gpfs/fs1/home/d/dfelsky/milicmil/phase/ASW.phased.haps /gpfs/fs0/scratch/*/SPONSOR_NAME/YOUR_SCINET_USERNAME/tutorial_data/ADMIX_COHORT/
+cp /gpfs/fs1/home/d/dfelsky/milicmil/phase/ASW.phased.haps /gpfs/fs0/scratch/SPONSOR_INITIAL/SPONSOR_NAME/YOUR_SCINET_USERNAME/tutorial_data/ADMIX_COHORT/
 
-cp /gpfs/fs1/home/d/dfelsky/milicmil/phase/ASW.phased.sample /gpfs/fs0/scratch/*/SPONSOR_NAME/YOUR_SCINET_USERNAME/tutorial_data/ADMIX_COHORT/
+cp /gpfs/fs1/home/d/dfelsky/milicmil/phase/ASW.phased.sample /gpfs/fs0/scratch/SPONSOR_INITIAL/SPONSOR_NAME/YOUR_SCINET_USERNAME/tutorial_data/ADMIX_COHORT/
 ```
 &nbsp;  
 &nbsp;       
@@ -237,27 +237,35 @@ nano phase_job.sh
 ```
 Now that you are in nano text editor select the information in the code block below and paste it using *ctrl + insert*. you can use the arrow keys to navigate to the different lines. When the **USERNAME** has been modified, press **ctrl + x** in order to exit. You will get a prompt to confirm the save. Press **Enter** to confirm the save.
 
+In the code below, you will need to specify the location of your output (all the print statements and whatnot that the batch job generates) as well as to change the directory in the script to your `tutorial_data` folder. **Note that you need to load the modules again in a batch job in Sci-net.**
+
 ```
 #!/bin/bash
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=40
 #SBATCH --time=1:00:00
 #SBATCH --job-name=phsing_tractor_USERNAME
-#SBATCH --output=omp_output_%j.txt
+#SBATCH --output=/DIRECTORY PATH TO OUTPUT/omp_output_%j.txt
 #SBATCH --mail-type=FAIL
 
 module use /gpfs/fs1/home/d/dfelsky/dfelsky/modules/
 
 module load shapeit
 
+cd /gpfs/fs0/scratch/SPONSOR_INITIAL/SPONSOR_NAME/YOUR_SCINET_USERNAME/tutorial_data
+
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+
 shapeit  --input-vcf ADMIX_COHORT/ASW.unphased.vcf.gz \
       --input-map HAP_REF/chr22.genetic.map.txt \
       --input-ref HAP_REF/chr22.hap.gz HAP_REF/chr22.legend.gz HAP_REF/ALL.sample \
       -O ADMIX_COHORT/ASW.phased
+
 ```
 To start your batch job type in `sbatch phase_job.sh`.
 To monitor the status of your job type in ```squeue -u USERNAME``` to see the status of your batch job.
 
+Depending on the number of requests, there may be a few hour wait before your job is run. 
 
 #### Converting  shapeit output to vcf format.
 

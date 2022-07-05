@@ -35,12 +35,12 @@ The example cohort dataset we are going to use here consists of chromosome 22 fo
 **DOWNLOAD URL**
 The example dataset is found on the following link [example dataset](https://github.com/Atkinson-Lab/Tractor-tutorial/blob/main/tutorial-data.zip) that you may analyze to follow along with this tutorial.
 
-save and unzip the data in a folder in your scratch space called **tutorial_data**.
+Save and unzip the data in a folder in your scratch space called **tutorial_data**.
 
 #### Obtaining tutorial dataset, Option 2, using a google drive link
 
 in order to download the data using google drive, we will use the python package **gdown**.
-First you will need to load python using this command `module load python/3.8.5` and then install gdown using `pip install -user gdown`.
+First you will need to load python using this command `module load python/3.8.5` and then install gdown using `pip install gdown`.
 
 When gdown is installed, make a python file using nano `nano download_data.py` and copy the following code below into it.
 

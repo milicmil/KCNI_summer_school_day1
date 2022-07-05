@@ -228,8 +228,11 @@ shapeit  --input-vcf ADMIX_COHORT/ASW.unphased.vcf.gz \
 &nbsp;  
 &nbsp;  
 
-In case we are pressed for time, one can copy the output using the gdown script with this URL:
-`https://drive.google.com/drive/folders/1HnlbRuzYCcoOlEDDR0a6BJ-8iipwnq9G?usp=sharing`
+In case we are pressed for time, one can copy the output using the gdown script with these URLs:
+
+`https://drive.google.com/file/d/1fPa50ZhY9PY_gRTBrg1CVAE4MOPAHCLO/view?usp=sharing` ASW.phased.haps
+
+`https://drive.google.com/file/d/14Ts40tRi1cIcB8K04AGb79ZP6zpdX6dK/view?usp=sharing` ASW.phased.sample
 
 When downloaded, move the `ASW.phased.haps` and `ASW.phased.sample` files to the **ADMIX_COHORT** folder in **tutorial_data**
 

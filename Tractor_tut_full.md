@@ -35,7 +35,7 @@ The example cohort dataset we are going to use here consists of chromosome 22 fo
 **DOWNLOAD URL**
 The example dataset is found on the following link [example dataset](https://github.com/Atkinson-Lab/Tractor-tutorial/blob/main/tutorial-data.zip) that you may analyze to follow along with this tutorial.
 
-Save and unzip the data in a folder in your scratch space called **tutorial_data**.
+save and unzip the data in a folder in your scratch space called **tutorial_data**.
 
 #### Obtaining tutorial dataset, Option 2, using a google drive link
 
@@ -233,7 +233,7 @@ In case we are pressed for time, one can copy the output using the gdown script 
 
 When downloaded, move the `ASW.phased.haps` and `ASW.phased.sample` files to the **ADMIX_COHORT** folder in **tutorial_data**
 
-```
+
 &nbsp;  
 &nbsp;       
 

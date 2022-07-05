@@ -37,15 +37,20 @@ The example dataset is found on the following link [example dataset](https://git
 
 save and unzip the data in a folder in your scratch space called **tutorial_data**.
 
-#### Obtaining tutorial dataset, Option 2, using a Scinet local copy of the data
+#### Obtaining tutorial dataset, Option 2, using a google drive link
 
-If you are having trouble downloading or unzipping the data, we have a local copy of the dataset on Sci-net.
+in order to download the data using google drive, we will use the python package **gdown**.
+First you will need to load python using this command `module load python/3.8.5` and then install gdown using `pip install -user gdown`. When gdown is installed.
 
-While in the main scratch folder for your username, the command below will copy the data to your scratch space.
+when it is installed, make a python file using nano `nano download_data.py` and copy the following code below into it.
+
+replace **url** with this link in QUOTATIONS: https://drive.google.com/drive/folders/1z9NAOs1E37xHRjAfUbXUvfU4L7YMuXbf?usp=sharing
 
 ```
-cp -r /gpfs/fs0/scratch/d/dfelsky/milicmil/tutorial_data/ /gpfs/fs0/scratch/HOST_FIRST_INITIAL/HOST_NAME/YOUR_SCINET_USERNAME/
+import gdown
+gdown.download_folder(url, quiet=True)
 ```
+press `ctrl+x` to save and exit the file. Run the file `python download_data.py`.
 
 We also provide a haplotype reference panel that can be downloaded from  [Shapeit](https://mathgen.stats.ox.ac.uk/impute/data_download_1000G_phase1_integrated_SHAPEIT2_16-06-14.html), which will be used for phasing, along with phased reference VCF files for local ancestry inference. Here is a complete list of the files:
 
@@ -90,7 +95,7 @@ Now that the data is in your scratch space, You will need to load the following 
 #### Loading Python module with numpy and pandas installed
 
 The commands below tell you what modules on Sci-net you should load.
-Load python 3.8.5 (It has numpy and pandas already installed)
+python 3.8.5 (It has numpy and pandas already installed) (This should already be done during the tutorial_data copy step)
 ```
 module load python/3.8.5
 ```
@@ -117,11 +122,12 @@ module load shapeit
 module load rfmix
 ```
 
-To get Tractor, copy it to your folder from the following location.
+If you type in `module list` you should see Python, shapeit and rfmix loaded in your environment.
 
-```
-cp -r /gpfs/fs1/home/d/dfelsky/milicmil/Tractor/ /gpfs/fs0/scratch/HOST_FIRST_INITIAL/HOST_NAME/YOUR_SCINET_USERNAME/tutorial_data/
-```
+
+To get Tractor, use the same **gdown** script you used to download the **tutorial_data** except this time us this url. `https://drive.google.com/drive/folders/1L9FdQZcDbY7e2J8aFsgTObDoYnMASI9-?usp=sharing`
+
+**NOTE: Run the script from the tutorial_data folder. The Tractor folder should be a subdirectory of the tutorial_data folder.**
 
 &nbsp;  
 &nbsp;
@@ -217,17 +223,16 @@ shapeit  --input-vcf ADMIX_COHORT/ASW.unphased.vcf.gz \
 
       # add this if shapeit throw error message:   --exclude-snp alignments.snp.strand.exclude
 ```    
-**NOTE: Chances are, there wont be enough computational time in debug node (60 min) to complete this step**. In that case you should either copy results or run the batch script below. 
+**NOTE: Chances are, there wont be enough computational time in debug node (60 min) to complete this step**. In that case you should either copy results or run the batch script below.
 
 &nbsp;  
 &nbsp;  
 
-In case we are pressed for time, one can copy the output from the location below. The `ASW.phased` file needs to be copied to **ADMIX_COHORT/** folder.
+In case we are pressed for time, one can copy the output using the gdown script with this URL:
+`https://drive.google.com/drive/folders/1HnlbRuzYCcoOlEDDR0a6BJ-8iipwnq9G?usp=sharing`
 
-```
-cp /gpfs/fs1/home/d/dfelsky/milicmil/phase/ASW.phased.haps /gpfs/fs0/scratch/SPONSOR_INITIAL/SPONSOR_NAME/YOUR_SCINET_USERNAME/tutorial_data/ADMIX_COHORT/
+When downloaded, move the `ASW.phased.haps` and `ASW.phased.sample` files to the **ADMIX_COHORT** folder in **tutorial_data**
 
-cp /gpfs/fs1/home/d/dfelsky/milicmil/phase/ASW.phased.sample /gpfs/fs0/scratch/SPONSOR_INITIAL/SPONSOR_NAME/YOUR_SCINET_USERNAME/tutorial_data/ADMIX_COHORT/
 ```
 &nbsp;  
 &nbsp;       
@@ -264,6 +269,8 @@ shapeit  --input-vcf ADMIX_COHORT/ASW.unphased.vcf.gz \
       -O ADMIX_COHORT/ASW.phased
 
 ```
+This batch job should take around 70 minutes on Sci-net.
+
 To start your batch job type in `sbatch phase_job.sh`.
 To monitor the status of your job type in ```squeue -u USERNAME``` to see the status of your batch job.
 
@@ -279,6 +286,7 @@ shapeit -convert \
         --input-haps ADMIX_COHORT/ASW.phased\
         --output-vcf ADMIX_COHORT/ASW.phased.vcf
 ```   
+This command takes 7 seconds to complete
 
 #### Local Ancestry Inference
 
@@ -295,7 +303,7 @@ rfmix -f ADMIX_COHORT/ASW.phased.vcf\
         -o ADMIX_COHORT/ASW.deconvoluted \
         --chromosome=22
 ```
-
+The above command takes around 5 minutes using debug node.
 ---
 Now you have your local ancestry calls and are ready for Tractor! In the next step we extract risk allele information from our data.
 
@@ -314,6 +322,8 @@ python Tractor/ExtractTracts.py \
       --vcf ADMIX_COHORT/ASW.phased \
       --num-ancs 2
 ```
+The above command takes around 5 minutes using debug node.
+
 
 6 new files will be generated in the ADMIX_COHORT folder:
 ```
@@ -336,7 +346,7 @@ To perform linear regression on a (simulated) continuous phenotype in our admixe
 
 **Using Tractor to perform Linear regression**
 ```
-python RunTractor.py --hapdose ADMIX_COHORT/ASW.phased --phe PHENO/Phe.txt --method linear --out SumStats.tsv
+python Tractor/RunTractor.py --hapdose ADMIX_COHORT/ASW.phased --phe PHENO/Phe.txt --method linear --out SumStats.tsv
 ```
 Output is **SumStats.tsv** in the **tutorial_data** folder.
 

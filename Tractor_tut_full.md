@@ -233,6 +233,16 @@ In case we are pressed for time, one can copy the output using the gdown script 
 
 When downloaded, move the `ASW.phased.haps` and `ASW.phased.sample` files to the **ADMIX_COHORT** folder in **tutorial_data**
 
+**Using a local copy of the oputput**
+
+In case we are pressed for time, one can copy the output from the location below. The `ASW.phased` file needs to be copied to **ADMIX_COHORT/** folder.
+
+```
+cp /gpfs/fs1/home/d/dfelsky/milicmil/phase/ASW.phased.haps /gpfs/fs0/scratch/SPONSOR_INITIAL/SPONSOR_NAME/YOUR_SCINET_USERNAME/tutorial_data/ADMIX_COHORT/
+
+cp /gpfs/fs1/home/d/dfelsky/milicmil/phase/ASW.phased.sample /gpfs/fs0/scratch/SPONSOR_INITIAL/SPONSOR_NAME/YOUR_SCINET_USERNAME/tutorial_data/ADMIX_COHORT/
+```
+
 
 &nbsp;  
 &nbsp;       

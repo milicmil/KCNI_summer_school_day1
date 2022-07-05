@@ -40,9 +40,9 @@ save and unzip the data in a folder in your scratch space called **tutorial_data
 #### Obtaining tutorial dataset, Option 2, using a google drive link
 
 in order to download the data using google drive, we will use the python package **gdown**.
-First you will need to load python using this command `module load python/3.8.5` and then install gdown using `pip install -user gdown`. When gdown is installed.
+First you will need to load python using this command `module load python/3.8.5` and then install gdown using `pip install -user gdown`.
 
-when it is installed, make a python file using nano `nano download_data.py` and copy the following code below into it.
+When gdown is installed, make a python file using nano `nano download_data.py` and copy the following code below into it.
 
 replace **url** with this link in QUOTATIONS: https://drive.google.com/drive/folders/1z9NAOs1E37xHRjAfUbXUvfU4L7YMuXbf?usp=sharing
 

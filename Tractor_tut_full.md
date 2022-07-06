@@ -140,10 +140,6 @@ In this tutorial we will use the debug node.
 
 This is a specific node that gives you more computing resources without entering the batch job queue. **NOTE: The debug node lasts 60 minutes** after which you will have to repeat the `debugjob` command in order to reinitailise it.
 
-loads the ddt module that allows for debug node initialization.
-```
-module load ddt
-```
 
 This command starts the debug node which gives additional computing resources to complete the tutorial commands.
 ```
@@ -231,11 +227,14 @@ shapeit  --input-vcf ADMIX_COHORT/ASW.unphased.vcf.gz \
 In case we are pressed for time, one can copy the output using the gdown script below with these URLs:
 
 download script for "ASW.phased.haps"
+
+https://drive.google.com/file/d/1fPa50ZhY9PY_gRTBrg1CVAE4MOPAHCLO/view?usp=sharing
+https://drive.google.com/file/d/1fPa50ZhY9PY_gRTBrg1CVAE4MOPAHCLO/view?usp=sharing
 ```
 import gdown
 url = "https://drive.google.com/file/d/1fPa50ZhY9PY_gRTBrg1CVAE4MOPAHCLO/view?usp=sharing"
 output = "ASW.phased.haps"
-gdown.download(url, output, quiet=False)
+gdown.download(url, output, quiet=True, fuzzy=True)
 
 ```
 
@@ -244,7 +243,7 @@ download script for "ASW.phased.sample"
 import gdown
 url = "https://drive.google.com/file/d/14Ts40tRi1cIcB8K04AGb79ZP6zpdX6dK/view?usp=sharing"
 output = "ASW.phased.sample"
-gdown.download(url, output, quiet=False)
+gdown.download(url, output, quiet=True, fuzzy=True)
 
 ```
 

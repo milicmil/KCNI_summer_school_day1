@@ -224,12 +224,12 @@ shapeit  --input-vcf ADMIX_COHORT/ASW.unphased.vcf.gz \
 &nbsp;  
 &nbsp;  
 
+**Alternate step to ge the phase output**
 In case we are pressed for time, one can copy the output using the gdown script below with these URLs:
 
-download script for "ASW.phased.haps"
+Note, you can make a small python file `nano download.py` for the script
 
-https://drive.google.com/file/d/1fPa50ZhY9PY_gRTBrg1CVAE4MOPAHCLO/view?usp=sharing
-https://drive.google.com/file/d/1fPa50ZhY9PY_gRTBrg1CVAE4MOPAHCLO/view?usp=sharing
+download script for "ASW.phased.haps"
 ```
 import gdown
 url = "https://drive.google.com/file/d/1fPa50ZhY9PY_gRTBrg1CVAE4MOPAHCLO/view?usp=sharing"
@@ -273,14 +273,17 @@ Now that you are in nano text editor select the information in the code block be
 
 In the code below, you will need to specify the location of your output (all the print statements and whatnot that the batch job generates) as well as to change the directory in the script to your `tutorial_data` folder. **Note that you need to load the modules again in a batch job in Sci-net.**
 
+
+
+
 ```
 #!/bin/bash
-#SBATCH --nodes=2
-#SBATCH --cpus-per-task=40
-#SBATCH --time=1:30:00
-#SBATCH --job-name=phsing_tractor_USERNAME
-#SBATCH --output=/DIRECTORY PATH TO OUTPUT/omp_output_%j.txt
-#SBATCH --mail-type=FAIL
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=16
+#SBATCH --time=3:00:00
+#SBATCH --job-name=phasing_tractor_USERNAME
+#SBATCH --output=/DIRECTORY PATH TO OUTPUT/phase_job_output_%j.txt
+#SBATCH --error=/DIRECTORY PATH TO OUTPUT/phase_job_error_%j.txt
 
 module use /gpfs/fs1/home/d/dfelsky/dfelsky/modules/
 
